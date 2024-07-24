@@ -2,6 +2,7 @@ import React from "react";
 import SearchIcon from "@mui/icons-material/Search";
 // import PersonIcon from "@mui/icons-material/Person";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import BargerMenu from "./BargerMenu";
 
 const Nanbar = () => {
   return (
@@ -18,14 +19,16 @@ const Nanbar = () => {
         />
         <SearchIcon className="mr-5" />
       </div>
-      <div className="flex">
+      <div className="flex items-center">
         <div className="m-4 cursor-pointer">
           <span className="mr-2 border-2 p-2 rounded-md hover:border-neutral-500 duration-500">Log in</span>
-          {/* <PersonIcon /> */}
         </div>
         <div className="m-4 cursor-pointer">
           <span className="mr-2">Cart</span>
           <ShoppingCartIcon />
+        </div>
+        <div className="m-4 cursor-pointer">
+        <BargerMenu/>
         </div>
       </div>
     </div>
