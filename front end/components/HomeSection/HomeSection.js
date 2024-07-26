@@ -4,7 +4,7 @@ import Menu from "../Navbar/Menu";
 const HomeSection = () => {
   return (
     <div>
-      <Menu />
+      {/* <Menu /> */}
     </div>
   );
 };
