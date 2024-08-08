@@ -59,7 +59,7 @@ const Categories = () => {
     },
   ];
   return (
-    <div className="w-1/6 shadow-md p-3 bg-white">
+    <div className="w-3/12 shadow-md p-3 mx-2 bg-white">
       {items.map(({ name, icon, link }, idx) => (
         <div
           key={idx}

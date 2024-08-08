@@ -1,38 +1,17 @@
 "use client";
-import React from "react";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+// Import Swiper React components
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+
+// import required modules
+import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import { ArrowLeft, ArrowRight } from "@mui/icons-material";
 
 const SimpleSlider = () => {
-  const SampleNextArrow = ({ onClick, className }) => {
-    return (
-      <ArrowRight
-        onClick={onClick}
-        className={`${className} absolute right-0 z-30`}
-      />
-    );
-  };
-
-  const SamplePrevArrow = ({ onClick, className }) => {
-    return (
-      <ArrowLeft
-        onClick={onClick}
-        className={`${className} absolute left-0 top-1/2 transform -translate-y-1/2 bg-green-500 text-yellow-500 z-30`}
-      />
-    );
-  };
-
-  const settings = {
-    dots: true,
-    infinite: true,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />,
-  };
-
   const items = [
     {
       image: "s_1.webp",
@@ -75,44 +54,49 @@ const SimpleSlider = () => {
       color: "#21ad61",
     },
   ];
-
   return (
-    <div className="w-3/4 mx-auto">
-      <Slider {...settings} className="bg-red-600 flex h-[410px]">
+    <>
+      <Swiper
+        spaceBetween={30}
+        centeredSlides={true}
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
+        }}
+        pagination={{
+          clickable: true,
+        }}
+        navigation={
+          {
+            // prevEl: <ArrowLeft />,
+            // nextEl: <ArrowRight />,
+          }
+        }
+        modules={[Autoplay, Pagination, Navigation]}
+        className="h-[410px] bg-white w-3/4 flex"
+      >
         {items.map(
           ({ image, onetext, twoText, threeText, link, color }, idx) => (
-            <div key={idx} className=" flex items-center justify-between">
-              <div className="w-2/4 p-5 flex items-center justify-between flex-col">
-                <h3>{onetext}</h3>
-                <h1>{twoText}</h1>
-                <span>{threeText}</span>
-                <button className="mt-2">Shop Now</button>
+            <SwiperSlide key={idx} style={{ backgroundColor: color }}>
+              <div className="flex items-center justify-around">
+                <img src={image} alt={twoText} className="w-3/5" />
+                <div className="w-1/4 flex flex-col items-center justify-center">
+                  <h3>{onetext}</h3>
+                  <h1 className="text-xl">{twoText}</h1>
+                  <span className="text-sm italic">{threeText}</span>
+                  <button className="mt-2 border-2 p-2 border-black border-it">
+                    Shop Now
+                  </button>
+                </div>
               </div>
-              <img src={image} alt={twoText} className="w-2/4 object-cover" />
-            </div>
+            </SwiperSlide>
           )
         )}
-      </Slider>
-    </div>
+        <ArrowLeft />
+        <ArrowRight />
+      </Swiper>
+    </>
   );
 };
 
 export default SimpleSlider;
-
-{
-  /* <Slider {...settings} className="bg-red-600 flex h-[410px]">
-{items.map(
-  ({ image, onetext, twoText, threeText, link, color }, idx) => (
-    <div key={idx} className="bg-purple-600 h-full flex">
-      <div className="bg-green-600 w-2/4 h-full flex flex-col justify-center items-center p-4">
-        <h3>{onetext}</h3>
-        <h1>{twoText}</h1>
-        <span>{threeText}</span>
-        <button className="mt-2">Shop Now</button>
-      </div>
-      <img src={image} alt={twoText} className="w-2/4 object-cover" />
-    </div>
-  )
-)}
-</Slider> */
-}
